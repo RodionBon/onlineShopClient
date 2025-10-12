@@ -1,6 +1,6 @@
-import { Box, Button, Card, CardMedia, Checkbox, Container, FormControlLabel, Grid, IconButton, Input, InputAdornment, MenuItem, Select, Slider, Stack, TablePagination, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, CardMedia, Checkbox, Container, FormControlLabel, Grid, IconButton, InputAdornment, MenuItem, Select, Slider, Stack, TablePagination, TextField, Typography } from "@mui/material"
 import ClearIcon from '@mui/icons-material/Clear';
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const ProductCard = () => {
     return <Card sx={(theme) => ({
@@ -35,7 +35,7 @@ function ProductListPage() {
     const [foundProductsCount, setFoundProductsCount] = useState(100);
 
     return (
-        <Stack>
+        <Stack sx={{ paddingTop: 4 }}>
             <Container>
                 <Box>
                     <Typography>{foundProductsCount} Waren gefunden</Typography>
