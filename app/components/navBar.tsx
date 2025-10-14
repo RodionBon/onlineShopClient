@@ -3,6 +3,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, Container, createTheme, IconButton, ThemeProvider } from '@mui/material';
 import { deDE } from '@mui/material/locale';
+import { useState } from 'react';
+import AppDrawer from './appDrawer';
 
 const navBarTheme = createTheme({
     components: {
@@ -16,25 +18,31 @@ const navBarTheme = createTheme({
     }
 }, deDE);
 
+
 function NavBar() {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
     return (
-        <ThemeProvider theme={navBarTheme}>
-            <Box sx={{ paddingY: 2, backgroundColor: 'primary.main' }}>
-                <Container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <IconButton>
-                        <MenuIcon />
-                    </IconButton>
-                    <Box>
-                        <IconButton>
-                            <ShoppingCartIcon />
+        <>
+            <AppDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+            <ThemeProvider theme={navBarTheme}>
+                <Box sx={{ paddingY: 2, backgroundColor: 'primary.main' }}>
+                    <Container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <IconButton onClick={() => setIsDrawerOpen(true)}>
+                            <MenuIcon />
                         </IconButton>
-                        <IconButton>
-                            <PersonIcon />
-                        </IconButton>
-                    </Box>
-                </Container>
-            </Box>
-        </ThemeProvider>
+                        <Box>
+                            <IconButton>
+                                <ShoppingCartIcon />
+                            </IconButton>
+                            <IconButton>
+                                <PersonIcon />
+                            </IconButton>
+                        </Box>
+                    </Container>
+                </Box>
+            </ThemeProvider >
+        </>
     )
 }
 
