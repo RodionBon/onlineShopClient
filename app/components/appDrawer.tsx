@@ -1,8 +1,7 @@
 import ListIcon from '@mui/icons-material/List';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { createTheme, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Select, ThemeProvider, type DrawerProps } from '@mui/material';
-import { deDE } from '@mui/material/locale';
+import { Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Select, type DrawerProps } from '@mui/material';
 import { Link } from 'react-router';
 
 function AppDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: DrawerProps['onClose'] }) {
@@ -15,7 +14,7 @@ function AppDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: DrawerProps[
                     </ListItemIcon>
                     <ListItemText primary="Warenliste" />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/cart">
+                <ListItemButton component={Link} to="/shoppingCart">
                     <ListItemIcon>
                         <ShoppingCartIcon sx={{ fontSize: 36 }} />
                     </ListItemIcon>
