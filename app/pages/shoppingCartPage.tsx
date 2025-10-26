@@ -2,6 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box, Button, Card, CardMedia, Container, IconButton, Input, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import { Link } from 'react-router';
 
 const priceFormatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
 
@@ -74,6 +75,8 @@ function ShoppingCartPage() {
                 variant="contained"
                 color="primary"
                 sx={{ px: 5, fontSize: '32px', alignSelf: 'flex-end' }}
+                component={Link}
+                to="/order"
             >
                 Zur Kasse
             </Button>
