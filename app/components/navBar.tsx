@@ -5,6 +5,7 @@ import { Box, Container, createTheme, IconButton, ThemeProvider } from '@mui/mat
 import { deDE } from '@mui/material/locale';
 import { useState } from 'react';
 import AppDrawer from './appDrawer';
+import { Link } from 'react-router';
 
 const navBarTheme = createTheme({
     components: {
@@ -32,10 +33,10 @@ function NavBar() {
                             <MenuIcon />
                         </IconButton>
                         <Box>
-                            <IconButton>
+                            <IconButton component={Link} to="/shoppingCart">
                                 <ShoppingCartIcon />
                             </IconButton>
-                            <IconButton>
+                            <IconButton component={Link} to="/account">
                                 <PersonIcon />
                             </IconButton>
                         </Box>
