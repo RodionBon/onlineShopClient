@@ -1,13 +1,10 @@
-import { createTheme, CssBaseline, TextField, ThemeProvider } from "@mui/material";
-import { deDE } from "@mui/material/locale";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router";
-import ProductListPage from "./pages/productListPage";
-
-const theme = createTheme(deDE)
+import appTheme from "./theme/appTheme";
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appTheme}>
       <CssBaseline />
       <Outlet />
     </ThemeProvider>
