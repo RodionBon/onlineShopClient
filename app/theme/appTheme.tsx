@@ -1,4 +1,4 @@
-import { alpha, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { alpha, createTheme } from "@mui/material";
 import { deDE } from "@mui/material/locale";
 import { brand, gray, orange, red, green } from "./colors";
 
