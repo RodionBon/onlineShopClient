@@ -21,3 +21,11 @@ export type GetProductsResponseParams = {
     totalProductsCount: number;
     maxAvailablePrice: number;
 }
+
+export type User = {
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
+    address?: string;
+}

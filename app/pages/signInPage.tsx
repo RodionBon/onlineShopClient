@@ -1,17 +1,33 @@
 import { Box, Button, FilledInput, TextField, Typography } from "@mui/material"
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { UserService } from "~/services/userService";
+import { useAppDispatch } from "~/store/hooks";
+import { signIn } from "~/store/userSlice";
 
 function SignInPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleSignIn = () => {
+    const [error, setError] = useState("");
+    const appDispatch = useAppDispatch();
+    const navigate = useNavigate();
 
+    const handleSignIn = async () => {
+        try {
+            const response = await UserService.signIn({ email, password });
+
+            appDispatch(signIn(response.user));
+            localStorage.setItem("authToken", response.token);
+            navigate('/productList');
+        }
+        catch (error) {
+            setError(error instanceof Error ? error.message : "Fehler beim Einloggen");
+        }
     }
 
     return (
         <Box sx={{ border: '1px solid black', padding: 4, borderRadius: '10px' }}>
-            <Typography>
+            <Typography variant="h4" sx={{ marginBottom: 2 }}>
                 Einloggen
             </Typography>
             <TextField
@@ -31,6 +47,7 @@ function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            <Typography sx={{ color: "red" }}>{error}</Typography>
             <Button
                 variant="contained"
                 color="primary"
