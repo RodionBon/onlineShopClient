@@ -4,7 +4,7 @@ export default [
   layout("layouts/mainLayout.tsx", [
     route("productList", "pages/productListPage/index.tsx"),
     route("account", "pages/accountPage.tsx"),
-    route("shoppingCart", "pages/shoppingCartPage.tsx"),
+    route("shoppingCart", "pages/shoppingCartPage/shoppingCartPage.tsx"),
     route("order", "pages/orderPage.tsx"),
 
     route("aboutUs", "pages/infoPages/aboutUsPage.tsx"),

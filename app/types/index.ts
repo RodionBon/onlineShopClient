@@ -6,6 +6,11 @@ export type Product = {
     itemsLeft: number;
 }
 
+export type CartItem = {
+    product: Product;
+    quantity: number;
+}
+
 export type GetProductsRequestParams = {
     searchQuery?: string;
     maxPrice?: string;

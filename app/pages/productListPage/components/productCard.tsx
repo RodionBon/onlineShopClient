@@ -1,6 +1,9 @@
-import { Box, Card, CardMedia, Typography } from "@mui/material"
-import { priceFormatter } from "~/helpers";
+import { Box, Card, CardMedia, IconButton, Typography } from "@mui/material"
+import { formatPriceInCents, priceFormatter } from "~/helpers";
 import type { Product } from "~/types";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { CartService } from "~/services/cartService";
+
 
 export default function ProductCard({ product }: { product: Product }) {
     return (
@@ -29,8 +32,13 @@ export default function ProductCard({ product }: { product: Product }) {
                 </Typography>
                 <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Typography>
-                        {priceFormatter.format(product.price / 100)}
+                        {formatPriceInCents(product.price)}
                     </Typography>
+                    <IconButton onClick={() => {
+                        CartService.addToCart(product.id);
+                    }} color="secondary">
+                        <AddShoppingCartIcon />
+                    </IconButton>
                 </Box>
             </Box>
         </Card>

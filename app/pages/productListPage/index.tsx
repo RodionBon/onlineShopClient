@@ -6,7 +6,7 @@ import PriceSlider from "./components/priceSlider";
 import ProductCard from "./components/productCard";
 import type { GetProductsRequestParams, GetProductsResponseParams, Product } from "~/types";
 import { URL_BASE, GET_PRODUCTS_ENDPOINT } from "~/consts";
-import { useAppSelector } from "~/store/hooks";
+
 
 function ProductListPage() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -21,8 +21,6 @@ function ProductListPage() {
     const [sortOrder, setSortOrder] = useState("fromCheap");
     const [pageNumber, setPageNumber] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-
-    const user = useAppSelector(state => state.user);
 
     const memoizedProductList = useMemo(() => (
         <Grid container spacing={2}>
