@@ -1,11 +1,17 @@
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Container, IconButton, styled, ThemeProvider, Toolbar, type ThemeOptions } from '@mui/material';
+import { Button, AppBar, Box, Container, IconButton, styled, ThemeProvider, Toolbar, type ThemeOptions } from '@mui/material';
 import { useState } from 'react';
 import AppDrawer from './appDrawer';
 import { Link } from 'react-router';
 import { mergeWithOuterTheme } from '~/helpers';
+import { useAppSelector } from '~/store/hooks';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAppDispatch } from '~/store/hooks';
+import { signOut } from '~/store/userSlice';
+import { LOCALSTORAGE_TOKEN_KEY } from '~/consts';
 
 const navBarThemeOptions: ThemeOptions = {
     components: {
@@ -30,6 +36,11 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 function NavBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const appDispatch = useAppDispatch();
+    
+    const user = useAppSelector(state => state.user);
+    const token = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+
 
     return (
         <>
@@ -42,12 +53,26 @@ function NavBar() {
                                 <MenuIcon />
                             </IconButton>
                             <Box>
-                                <IconButton component={Link} to="/shoppingCart">
-                                    <ShoppingCartIcon />
-                                </IconButton>
-                                <IconButton component={Link} to="/account">
-                                    <PersonIcon />
-                                </IconButton>
+                                {user.isLoading && token || user.userData ? (
+                                    <>
+                                        <IconButton component={Link} to="/shoppingCart">
+                                            <ShoppingCartIcon />
+                                        </IconButton>
+                                        <IconButton component={Link} to="/account">
+                                            <PersonIcon />
+                                        </IconButton>
+                                        <Button variant="contained" startIcon={<LogoutIcon />} onClick={() => {
+                                            appDispatch(signOut(null));
+                                            localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
+                                        }}>
+                                            Ausloggen
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <Button component={Link} to="/signIn" variant="contained" startIcon={<LoginIcon />}>
+                                        Einloggen
+                                    </Button>
+                                )}
                             </Box>
                         </StyledToolbar>
                     </Container>
