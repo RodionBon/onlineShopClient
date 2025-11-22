@@ -1,4 +1,5 @@
-import { URL_BASE, SIGN_IN_ENDPOINT, SIGN_UP_ENDPOINT, GET_USER_ENDPOINT } from "~/consts";
+import { URL_BASE, SIGN_IN_ENDPOINT, SIGN_UP_ENDPOINT, GET_USER_ENDPOINT, UPDATE_USER_ENDPOINT } from "~/consts";
+import { getToken } from "~/helpers";
 import type { User } from "~/types";
 
 export type SignInRequestParams = {
@@ -87,6 +88,32 @@ export const UserService = {
         }
         catch (error) {
             console.error("Ein Fehler beim Abrufen des Benutzers:", error);
+            throw error;
+        }
+    },
+    updateUserData: async (newData: Partial<User>): Promise<User> => {
+        try {
+            const token = getToken();
+
+            const response = await fetch(`${URL_BASE}${UPDATE_USER_ENDPOINT}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(newData)
+            })
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Unbekannter Fehler");
+            }
+
+            return data.newUserData;
+        }
+        catch (error) {
+            console.error("Ein Fehler beim Aktualisieren des Benutzers:", error);
             throw error;
         }
     }
