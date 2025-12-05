@@ -28,9 +28,32 @@ export type GetProductsResponseParams = {
 }
 
 export type User = {
+    id: number;
     email: string;
     firstName?: string;
     lastName?: string;
     phoneNumber?: string;
     address?: string;
+}
+
+export type PaymentMethod = "card" | "cash";
+
+export type OrderItem = {
+    product: Product;
+    quantity: number;
+}
+
+export type Order = {
+    id: number;
+    userId: number;
+    items: OrderItem[];
+}
+
+export type CreateOrderRequestParams = {
+    paymentMethod: PaymentMethod;
+    userId: number;
+} & Partial<Omit<User, "id" | "email">>;
+
+export type FormErrors<T> = {
+    [K in keyof T]?: string;
 }

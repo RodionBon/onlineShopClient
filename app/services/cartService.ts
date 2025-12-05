@@ -1,4 +1,4 @@
-import { ADD_TO_CART_ENDPOINT, DELETE_CART_ITEM_ENDPOINT, GET_CART_ENDPOINT, LOCALSTORAGE_TOKEN_KEY, UPDATE_CART_ITEM_ENDPOINT, URL_BASE } from "~/consts";
+import { ADD_TO_CART_ENDPOINT, DELETE_CART_ITEM_ENDPOINT, GET_CART_ENDPOINT, UPDATE_CART_ITEM_ENDPOINT, URL_BASE } from "~/consts";
 import { getToken } from "~/helpers";
 import type { CartItem } from "~/types";
 

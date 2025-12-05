@@ -5,7 +5,7 @@ export default [
     route("productList", "pages/productListPage/index.tsx"),
     route("account", "pages/accountPage.tsx"),
     route("shoppingCart", "pages/shoppingCartPage/shoppingCartPage.tsx"),
-    route("order", "pages/orderPage.tsx"),
+    route("order", "pages/orderPage/orderPage.tsx"),
 
     route("aboutUs", "pages/infoPages/aboutUsPage.tsx"),
     route("datenSchutz", "pages/infoPages/datenSchutzPage.tsx"),

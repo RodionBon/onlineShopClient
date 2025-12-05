@@ -22,4 +22,10 @@ export const UPDATE_CART_ITEM_ENDPOINT = `${CART_SUBPATH}/updateItem`;
 
 export const DELETE_CART_ITEM_ENDPOINT = `${CART_SUBPATH}/deleteItem`;
 
+const ORDER_SUBPATH = '/order';
+
+export const CREATE_ORDER_ENDPOINT = `${ORDER_SUBPATH}/create`;
+
 export const LOCALSTORAGE_TOKEN_KEY = 'authToken';
+
+export const COUNTRY_PHONE_CODE = "49";
