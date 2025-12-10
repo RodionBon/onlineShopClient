@@ -8,7 +8,7 @@ function AppDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: DrawerProps[
     return (
         <Drawer open={isOpen} onClose={onClose}>
             <List sx={{ width: 400 }}>
-                <ListItemButton component={Link} to="/productList">
+                <ListItemButton component={Link} to="/">
                     <ListItemIcon>
                         <ListIcon sx={{ fontSize: 36 }} />
                     </ListItemIcon>

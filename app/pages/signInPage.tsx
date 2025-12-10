@@ -18,7 +18,7 @@ function SignInPage() {
 
             appDispatch(signIn(response.user));
             localStorage.setItem("authToken", response.token);
-            navigate('/productList');
+            navigate('/');
         }
         catch (error) {
             setError(error instanceof Error ? error.message : "Fehler beim Einloggen");
