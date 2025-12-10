@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Snackbar, TextField, Typography } from "@mui/material"
 import { useEffect, useState } from "react";
-import { NumericFormat, PatternFormat, patternFormatter } from "react-number-format";
+import { NumericFormat } from "react-number-format";
 import { useAppDispatch, useAppSelector } from "~/store/hooks"
 import { updateUserData } from "~/store/userSlice";
 import type { User } from "~/types";
