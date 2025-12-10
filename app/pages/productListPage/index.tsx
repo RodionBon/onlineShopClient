@@ -4,8 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import PriceSlider from "./components/priceSlider";
 import ProductCard from "./components/productCard";
-import type { GetProductsRequestParams, GetProductsResponseParams, Product } from "~/types";
-import { URL_BASE, GET_PRODUCTS_ENDPOINT } from "~/consts";
+import type { GetProductsRequestParams, Product } from "~/types";
+import { ProductService } from "~/services/productService";
 
 
 function ProductListPage() {
@@ -49,15 +49,12 @@ function ProductListPage() {
             }
         }
 
-        const urlParams = new URLSearchParams({
+        const merdegParameters = {
             ...baseParams,
             ...overrideParams
-        });
+        };
 
-        const response = await fetch(`${URL_BASE}${GET_PRODUCTS_ENDPOINT}?${urlParams}`, {
-            method: "GET",
-        })
-        const data = await response.json() as GetProductsResponseParams;
+        const data = await ProductService.getProducts(merdegParameters);
 
         const maxPrice = (data.maxAvailablePrice) / 100;
 
@@ -68,7 +65,19 @@ function ProductListPage() {
             setMaxAvailablePrice(maxPrice);
             setPriceRange([0, maxPrice]);
         }
-    }, [searchQuery, sortOrder, pageNumber, itemsPerPage, priceRange, isShowOnlyAvailable]);
+    }, [
+        searchQuery,
+        sortOrder,
+        pageNumber,
+        itemsPerPage,
+        priceRange,
+        isShowOnlyAvailable,
+        ProductService,
+        setProducts,
+        setTotalProductsCount,
+        setMaxAvailablePrice,
+        setPriceRange
+    ]);
 
     useEffect(() => {
         fetchProducts({}, true);
