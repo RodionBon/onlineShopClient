@@ -27,3 +27,8 @@ dist-ssr
 /.react-router/
 /build/
 
+.env
+app/.env
+
+.vscode
+

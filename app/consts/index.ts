@@ -1,4 +1,4 @@
-export const URL_BASE = 'http://localhost:3000';
+export const URL_BASE = import.meta.env.VITE_SERVER_URL_BASE ?? 'http://localhost:3000';
 
 export const GET_PRODUCTS_ENDPOINT = '/product';
 
